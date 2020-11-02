@@ -50,8 +50,8 @@ export default class HfsPanelContent extends React.Component {
   render () {
     const { inputValue } = this.state
     const localizations = dataManager.get('localizations')
-    const btnText = localizations ? localizations.startBuildingHFSButton : 'Start Building'
-    const placeholder = localizations ? localizations.startPageHFSInputPlaceholder : '{name} Name'
+    const btnText = localizations && localizations.startBuildingHFSButton || 'Start Building'
+    const placeholder = localizations && localizations.startPageHFSInputPlaceholder || '{name} Name'
 
     return (
       <div className='vcv-hfs-start-blank-container'>

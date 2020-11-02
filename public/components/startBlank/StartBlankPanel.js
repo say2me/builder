@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import classNames from 'classnames'
 import vcCake from 'vc-cake'
 import HfsPanelContent from './lib/hsfPanelContent'
 import PagePanelContent from './lib/pagePanelContent'
@@ -18,13 +18,17 @@ export default class startBlank extends React.Component {
 
   constructor (props) {
     super(props)
+    this.ref = React.createRef()
     this.handleMouseUp = this.handleMouseUp.bind(this)
     this.handleStartClick = this.handleStartClick.bind(this)
     this.openEditForm = this.openEditForm.bind(this)
+    this.state = {
+      isVisible: false
+    }
   }
 
   componentDidMount () {
-    ReactDOM.findDOMNode(this).classList.add('vcv-ui-state--visible')
+    this.setState({isVisible: true})
   }
 
   handleMouseUp () {
@@ -88,9 +92,12 @@ export default class startBlank extends React.Component {
         />
       )
     }
-
+    const wrapperClasses = classNames({
+      'vcv-start-blank-container': true,
+      'vcv-ui-state--visible': this.state.isVisible
+    })
     return (
-      <div className='vcv-start-blank-container' onMouseUp={this.handleMouseUp}>
+      <div className={wrapperClasses} onMouseUp={this.handleMouseUp} ref={this.ref}>
         <div className='vcv-start-blank-scroll-container'>
           <div className='vcv-start-blank-inner'>
             <div className='vcv-start-blank-heading-container'>

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests editor navbar Navbar render 1`] = `
+<div
+  className="vcv-layout-iframe-content"
+>
+  <div
+    className="vcv-start-blank-container vcv-ui-state--visible"
+    onMouseUp={[Function]}
+  >
+    <div
+      className="vcv-start-blank-scroll-container"
+    >
+      <div
+        className="vcv-start-blank-inner"
+      >
+        <div
+          className="vcv-start-blank-heading-container"
+        >
+          <div
+            className="vcv-start-blank-page-heading"
+          >
+            undefined Default
+          </div>
+          <div
+            className="vcv-start-blank-page-heading"
+          />
+        </div>
+        <div
+          className="vcv-hfs-start-blank-container"
+        >
+          <form
+            className="vcv-hfs-start-blank-form"
+            onSubmit={[Function]}
+          >
+            <input
+              autoFocus={true}
+              className="vcv-start-blank-title-input"
+              onChange={[Function]}
+              placeholder="Default Name"
+              type="text"
+              value=""
+            />
+            <button
+              className="vcv-hfs-start-blank-start-button"
+              type="submit"
+            >
+              Start Building
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

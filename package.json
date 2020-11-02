@@ -76,7 +76,8 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/devElements/",
-      "__mocks__"
+      "__mocks__",
+      "__snapshots__"
     ],
     "transform": {
       "^.+\\.jsx?$": "./tests/jest/__mocks__/jest.transform.js"
