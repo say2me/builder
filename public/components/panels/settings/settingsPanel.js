@@ -6,6 +6,7 @@ import PageSettings from './lib/pageSettings/component'
 import CustomScripts from './lib/customJavascript/component'
 import Popup from './lib/popup/component'
 import ElementsLock from './lib/elementsLock/component'
+import YoastComponent from './lib/yoast/component'
 
 import PanelNavigation from '../panelNavigation'
 import Scrollbar from '../../scrollbar/scrollbar'
@@ -36,6 +37,12 @@ const controls = {
     type: 'customJs',
     title: customJSText,
     content: <CustomScripts />
+  },
+  yoast: {
+    index: 10,
+    type: 'yoast',
+    title: 'Yoast',
+    content: <YoastComponent />
   }
 }
 
