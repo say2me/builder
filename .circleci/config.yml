@@ -235,15 +235,14 @@ jobs:
             - ./node_modules
 workflows:
   version: 2
-  commit:
-    codestyle:
-      jobs:
-        - js-codestyle
-        - php-codestyle
-    tests:
-      jobs:
-        - php-tests
-        - js-stores-tests
+  codestyle:
+    jobs:
+      - js-codestyle
+      - php-codestyle
+  tests:
+    jobs:
+      - php-tests
+      - js-stores-tests
   nightly:
     triggers:
       - schedule:
