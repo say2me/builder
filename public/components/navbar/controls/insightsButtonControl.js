@@ -2,6 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import NavbarContent from '../navbarContent'
 import { getStorage, getService } from 'vc-cake'
+import { pick, despatch } from '../../api/innerAPI'
 
 const workspaceContentState = getStorage('workspace').state('content')
 const workspaceSettings = getStorage('workspace').state('settings')
@@ -45,6 +46,7 @@ export default class InsightsButtonControl extends NavbarContent {
 
   handleClickInsights (e) {
     e && e.preventDefault()
+    despatch('insight:icon:click', this.state.isActive)
     workspaceContentState.set(!this.state.isActive ? 'insights' : false)
     workspaceSettings.set({ action: 'insights' })
   }
@@ -68,7 +70,7 @@ export default class InsightsButtonControl extends NavbarContent {
       'vcv-ui-icon-lamp': true
     })
 
-    return (
+    return pick( 'insightsIcon',
       <span className={controlClass} title={name} onClick={this.handleClickInsights} data-vcv-guide-helper='insights-control'>
         <span className='vcv-ui-navbar-control-content'>
           <i className={iconClass} />

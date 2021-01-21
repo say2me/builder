@@ -2,6 +2,8 @@ import vcCake from 'vc-cake'
 import { getResponse } from 'public/tools/response'
 import { getPopupDataFromElement } from 'public/tools/popup'
 
+import apply from 'public/components/api/innerAPI'
+
 const dataProcessor = vcCake.getService('dataProcessor')
 const elementAssetsLibrary = vcCake.getService('elementAssetsLibrary')
 const stylesManager = vcCake.getService('stylesManager')
@@ -130,7 +132,7 @@ export default class SaveController {
       const featuredImageState = settingsStorage.state('featuredImage').get()
       // if storage state is empty, need to explicitly send a string, otherwise it won't be sent in a request
       const featuredImageDataValue = featuredImageState && featuredImageState.urls && featuredImageState.urls.length ? featuredImageState : 'empty'
-      const requestData = {
+      const requestData = apply('wordpress:data:save', {
         'vcv-action': 'setData:adminNonce',
         'vcv-source-id': id,
         'vcv-ready': '1', // Used for backend editor when post being saved
@@ -157,7 +159,7 @@ export default class SaveController {
         'vcv-be-editor': 'fe',
         'wp-preview': vcCake.getData('wp-preview'),
         'vcv-updatePost': '1'
-      }
+      })
 
       if (dataManager.get('dataCollectionEnabled')) {
         let licenseType
