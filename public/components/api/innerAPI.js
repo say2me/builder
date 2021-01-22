@@ -1,16 +1,21 @@
 
 import ee from 'event-emitter'
 
-const innerAPIEmitter = function () {}
-ee(innerAPIEmitter.prototype)
-const apiEventEmitter = new innerAPIEmitter()
+const InnerAPIEmitter = function () {}
+ee(InnerAPIEmitter.prototype)
+const apiEventEmitter = new InnerAPIEmitter()
 const filters = {}
 const components = {}
 export default {
   pick (point, component, ...options) {
-    if (components[point]) {
-      return components[point].call(component, ...options)
-    }
+    const pointSplit = point.split(':')
+    let eventSplit = ''
+    pointSplit.each((event) => {
+      eventSplit = eventSplit ? `${eventSplit}:${event}` : event
+      if (components[eventSplit]) {
+        component = components[eventSplit].call(component, ...options)
+      }
+    })
     return component
   },
   mount (point, callback) {
@@ -20,10 +25,10 @@ export default {
     apiEventEmitter.emit.apply(apiEventEmitter, [`vcv:inner:api:${event}`].concat(options))
   },
   subscribe (event, callback, once = false) {
-    if(once) {
-      apiEventEmitter.once('vcv:inner:api:' + event, callback)
+    if (once) {
+      apiEventEmitter.once(`vcv:inner:api:${event}`, callback)
     } else {
-      apiEventEmitter.on('vcv:inner:api:' + event, callback)
+      apiEventEmitter.on(`vcv:inner:api:${event}`, callback)
     }
   },
   unsubscribe (event, callback) {
@@ -37,7 +42,7 @@ export default {
     }
     return value
   },
-  filter (name, callack) {
+  filter (name, callback) {
     if (filters[name]) {
       filters[name] = []
     }
